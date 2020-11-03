@@ -1,0 +1,12 @@
+.button {
+  &_colored {
+    background-color: #1ad48e;
+    transition: all 0.3s;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+  &_small {
+    padding: 10px 14px;
+  }
+}

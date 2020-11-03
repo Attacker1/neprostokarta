@@ -1,11 +1,16 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Graphik, sans-serif;
 }
 
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -13,5 +18,13 @@
   @media screen and (max-width: 1230px) {
     padding-left: 15px;
     padding-right: 15px;
+  }
+}
+
+.text {
+  &_small {
+    font-size: 15px;
+    line-height: 14px;
+    letter-spacing: 0.1px;
   }
 }

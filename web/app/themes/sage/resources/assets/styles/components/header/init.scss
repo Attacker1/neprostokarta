@@ -1,1 +1,66 @@
-@import "wrap";
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 22px 0;
+  background-color: #fff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo {
+    margin-right: 20px;
+
+    svg {
+      width: 157px;
+      height: 24px;
+    }
+  }
+
+  &_menu {
+    list-style-type: none;
+    display: flex;
+
+    &__item {
+      margin-right: 40px;
+    }
+
+    &__link {
+      color: $main_color;
+      font-weight: 300;
+      font-size: 15px;
+      text-decoration: none;
+    }
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+  }
+
+  &__signup {
+    font-size: 15px;
+    text-decoration: none;
+    color: $main_color;
+    margin-right: 15px;
+  }
+
+  &__button {
+    font-weight: 500;
+
+    &:hover {
+      background-color: #1ffbbb;
+    }
+  }
+}

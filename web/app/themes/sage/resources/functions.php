@@ -96,3 +96,4 @@ Container::getInstance()
  * On this file we only append another function files
  */
 require_once dirname(__DIR__ . '/resources') . '/functions/remove.php';
+require_once dirname(__DIR__ . '/resources') . '/functions/walker.php';
