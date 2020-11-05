@@ -5,4 +5,6 @@ Template Name: Главная страница
 
 @section('content')
   @include('components.hello.wrap')
+  @include('components.description.wrap')
+  @include('components.payment.wrap')
 @endsection

@@ -2,8 +2,11 @@
 @import "common/global";
 @import "common/fonts";
 @import "common/buttons";
+@import "common/title";
 
 /* Components */
 @import "components/header/init";
 @import "components/footer/init";
 @import "components/hello/init";
+@import "components/description/init";
+@import "components/payment/init";

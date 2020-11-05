@@ -1,0 +1,82 @@
+.payment {
+  padding: 268px 0 90px 0;
+  background-color: #f7f7f8;
+
+  &__title {
+    max-width: 630px;
+    color: #2a206a;
+  }
+
+  &__descr {
+    font-size: 18px;
+    line-height: 30px;
+    margin-top: 17px;
+    color: #4d4476;
+    max-width: 450px;
+  }
+
+  &__wrapper {
+    position: relative;
+    height: 800px;
+  }
+
+  &__item {
+    position: absolute;
+
+    &:nth-child(1) {
+      top: -50px;
+      right: -50px;
+      width: 565px;
+    }
+
+    &:nth-child(2) {
+      bottom: 50%;
+      right: 45%;
+      transform: translateX(50%);
+      width: 532px;
+    }
+
+    &:nth-child(3) {
+      bottom: 340px;
+      left: 20px;
+      width: 423px;
+    }
+
+    &:nth-child(4) {
+      top: 100px;
+      left: 140px;
+      width: 460px;
+    }
+  }
+
+  &__video {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    width: 100%;
+
+    &-hide {
+      opacity: 0;
+    }
+
+    &-visible {
+      opacity: 1;
+    }
+  }
+
+  &__area {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    svg {
+      path {
+        fill: none;
+        pointer-events: visibleFill;
+      }
+    }
+  }
+}
+

@@ -1,0 +1,1 @@
+<svg width='5' height='10' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1.725 1.49L4.57 4.68c.207.172.208.39.004.564L1.734 8.49' stroke='#fff' stroke-width='1.5' stroke-linecap='round'/></svg>

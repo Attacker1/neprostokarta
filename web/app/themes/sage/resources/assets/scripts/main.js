@@ -3,6 +3,7 @@ import 'jquery';
 
 // Import components
 import './components/header/init'
+import './components/payment/init'
 
 // import local dependencies
 import Router from './util/Router';

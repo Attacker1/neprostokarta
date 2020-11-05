@@ -1,0 +1,37 @@
+.description {
+  padding: 90px 0;
+  background: linear-gradient(180deg, #fff, #f7f7f8);
+
+  &__item {
+    max-width: 630px;
+    color: #2a206a;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 48px;
+    letter-spacing: -0.28125px;
+    margin-left: 90px;
+
+    &:last-child {
+      margin-top: 96px;
+    }
+
+    @media screen and (max-width: 1023px) {
+      font-size: 22px;
+      line-height: 38px;
+      margin-left: 0;
+
+      &:last-child {
+        margin-top: 64px;
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      font-size: 18px;
+      line-height: 26px;
+
+      &:last-child {
+        margin-top: 72px;
+      }
+    }
+  }
+}
