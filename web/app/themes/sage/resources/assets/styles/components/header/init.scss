@@ -8,10 +8,16 @@
   background-color: #fff;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 
+  @media screen and (max-width: 1023px) {
+    padding: 22px 15px;
+  }
+
   &__inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1440px;
+    margin: 0 auto;
   }
 
   &__left {
@@ -42,6 +48,10 @@
       font-size: 15px;
       text-decoration: none;
     }
+
+    @media screen and (max-width: 1023px) {
+      display: none;
+    }
   }
 
   &__right {
@@ -54,6 +64,10 @@
     text-decoration: none;
     color: $main_color;
     margin-right: 15px;
+
+    @media screen and (max-width: 1023px) {
+      display: none;
+    }
   }
 
   &__button {

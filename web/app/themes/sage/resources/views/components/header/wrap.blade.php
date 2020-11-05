@@ -1,5 +1,4 @@
 <header class="header">
-  <div class="container">
     <div class="header__inner">
       <div class="header__left">
         <a href="#" class="header__logo">@include('icon::logo')</a>
@@ -10,5 +9,4 @@
         <div class="button button_small button_colored header__button">Contact Us</div>
       </div>
     </div>
-  </div>
 </header>
