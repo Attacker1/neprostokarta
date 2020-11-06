@@ -13,7 +13,7 @@
       </div>
     </div>
   </div>
- {{-- <div class="payment__area">
+  {{--<div class="payment__area">
     @include('icon::payment/' . $area)
   </div>--}}
 </div>
