@@ -3,6 +3,8 @@ jQuery(document).ready(function () {
     let stopAnimation = $('.payment__video-unhover');
 
     $('.payment__item').mouseover(function () {
+        $(this).find(stopAnimation).removeClass('payment__video-visible');
+        $(this).find(startAnimation).addClass('payment__video-visible');
         $(this).find(startAnimation)[0].play();
     }).mouseout(function () {
         $(this).find(startAnimation).removeClass('payment__video-visible');
@@ -10,8 +12,9 @@ jQuery(document).ready(function () {
         $(this).find(stopAnimation).addClass('payment__video-visible');
         $(this).find(stopAnimation)[0].play();
         $(this).find(stopAnimation).on('ended', function () {
-            $(this).removeClass('payment__video-visible');
-            $(this).siblings(startAnimation).addClass('payment__video-visible');
+            startAnimation[0].currentTime = 0;
+            // $(this).removeClass('payment__video-visible');
+            // $(this).siblings(startAnimation).addClass('payment__video-visible');
         })
     })
 });

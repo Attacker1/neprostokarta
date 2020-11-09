@@ -3,6 +3,7 @@ import 'jquery';
 
 // Import components
 import './components/header/init'
+import './components/hello/init'
 import './components/payment/init'
 
 // import local dependencies

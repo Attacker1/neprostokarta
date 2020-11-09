@@ -7,4 +7,6 @@ Template Name: Главная страница
   @include('components.hello.wrap')
   @include('components.description.wrap')
   @include('components.payment.wrap')
+  @include('components.experience.wrap')
+  @include('components.results.wrap')
 @endsection

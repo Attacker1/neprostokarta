@@ -3,7 +3,7 @@
     ['videoHover' => 'fundingHover.mp4',
     'videoUnhover' => 'fundingUnhover.mp4',
     'name' => 'JIT Funding',
-    'area' => 'cards-area'],
+    'area' => 'funding-area'],
 
     ['videoHover' => 'widgetsHover.mp4',
     'videoUnhover' => 'widgetsUnhover.mp4',
@@ -23,6 +23,6 @@
 @endphp
 <div class="payment__wrapper">
   @foreach($items as $item)
-    @include('components.payment.items.item', ['videoHover' => $item['videoHover'], 'videoUnhover' => $item['videoUnhover'], 'area' => $item['area']])
+    @include('components.payment.items.item', ['videoHover' => $item['videoHover'], 'videoUnhover' => $item['videoUnhover'], 'name' => $item['name'], 'area' => $item['area']])
   @endforeach
 </div>

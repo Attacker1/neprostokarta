@@ -15,7 +15,11 @@
           </div>
         </div>
         <div class="hello__right">
-          <video src="{{ get_theme_file_uri() .  '/card.mp4'}}" autoplay muted></video>
+          <video class="hello__video" src="{{ get_theme_file_uri() .  '/card.mp4'}}" autoplay muted></video>
+          <div class="hello__card">
+            <img src="@asset('images/undercard.png')" alt="undercards">
+            @include('icon::card')
+          </div>
         </div>
       </div>
       @include('components.hello.companies.wrap')
