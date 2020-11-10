@@ -1,7 +1,14 @@
 .experience {
   padding: 150px 0;
-  background-color: #2f2476;
+  background-color: #2a206a;
+  position: relative;
   height: calc(100vh - 81px);
+
+  &__wrapper {
+    position: absolute;
+    right: 12%;
+    bottom: 44%;
+  }
 
   &__inner {
     display: flex;
@@ -13,12 +20,14 @@
     height: 595px;
     overflow: hidden;
     object-fit: cover;
+    mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0, #2a206a 13%, #2a206a 70%, rgba(0, 0, 0, 0));
   }
 
   &__animation {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0, #2a206a 30%, #2a206a 70%, rgba(0, 0, 0, 0));
   }
 
   &__title {
@@ -50,6 +59,10 @@
 
   &__item {
     display: flex;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s;
     justify-content: space-between;
     font-size: 18px;
     border-top: 1px solid hsla(0, 0%, 100%, 0.1);
@@ -57,6 +70,11 @@
     color: #fff;
 
     &-active {
+      width: 100%;
+      height: 100%;
+    }
+
+    &-green {
       .experience__name {
         color: #1cc283;
       }

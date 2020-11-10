@@ -1,0 +1,42 @@
+.partner {
+  &__company {
+    margin-top: 350px;
+
+    &:last-child {
+      margin-bottom: 150px;
+    }
+  }
+
+  &__logo {
+    height: 40px;
+  }
+
+  &__representative {
+    display: flex;
+    align-items: center;
+    margin-top: 44px;
+  }
+
+  &__avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+  }
+
+  &__text {
+    margin-top: 30px;
+    font-size: 22px;
+    line-height: 1.81818182;
+    letter-spacing: 0;
+    color: #2a206a;
+  }
+
+  &__about {
+    margin-left: 15px;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0;
+    color: #68657f;
+    font-weight: 500;
+  }
+}

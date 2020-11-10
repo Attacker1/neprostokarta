@@ -1,0 +1,57 @@
+.partner {
+  padding: 90px 0;
+
+  &__left {
+    width: 450px;
+  }
+
+  &__wrapper {
+    width: 360px;
+  }
+
+  &__title {
+    width: 315px;
+    font-size: 40px;
+    line-height: 1.35;
+    letter-spacing: -0.7px;
+    font-weight: 400;
+    color: #2a206a;
+  }
+
+  &__descr {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.66666667;
+    letter-spacing: 0;
+    color: #4d4476;
+  }
+
+  &__advantages {
+    margin-top: 44px;
+  }
+
+  &__advantage {
+    display: flex;
+    margin-top: 34px;
+
+    &-title {
+      margin-left: 18px;
+      font-size: 18px;
+      line-height: 1.44444444;
+      letter-spacing: -0.41px;
+      color: #2a206a;
+      font-weight: 500;
+    }
+
+    svg {
+      min-width: 28.13px;
+      height: 28.13px;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+@import "company";
