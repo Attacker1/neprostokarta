@@ -10,4 +10,5 @@ Template Name: Главная страница
   @include('components.experience.wrap')
   @include('components.results.wrap')
   @include('components.partner.wrap')
+  @include('components.start.wrap')
 @endsection
