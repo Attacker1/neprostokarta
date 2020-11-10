@@ -14,27 +14,73 @@
         integrity="sha512-vWutwDjKJo+VMAA7IrS/ICTmVYXRMdqtXA27MSuPxGjkbYnKeUKPrIpfsAwIXCzaSDF/qRy/L85ko/yxW0AIiA=="
         crossorigin="anonymous"></script>
 <script>
-  const intro = document.querySelector('.experience');
-  const video = intro.querySelector('.experience__animation');
+  window.onload = function() {
 
-  const controller = new ScrollMagic.Controller();
+    $('.experience__item').first().addClass('experience__item-active').addClass('experience__item-green');
 
-  const scene = new ScrollMagic.Scene({
-    duration: 9000,
-    triggerElement: intro,
-    triggerHook: 0.06,
-  })
-    .setPin(intro)
+    const intro = document.querySelector('.experience');
+    const video = intro.querySelector('.experience__animation');
+    const text = document.querySelector('.experience__wrapper');
+    const card = document.querySelector('.experience__card');
+
+    const controller = new ScrollMagic.Controller();
+    let timeline = new TimelineMax();
+
+    const scene = new ScrollMagic.Scene({
+      duration: 9000,
+      triggerElement: intro,
+      triggerHook: 0.06,
+    })
+      .setPin(intro)
+      .addTo(controller);
+
+    const textAnim = TweenMax.fromTo(text, 3, {opacity: 0}, {opacity: 1});
+    const cardAnim = TweenMax.fromTo(card, 3, {opacity: 0}, {opacity: 1});
+    timeline.add(textAnim).add(cardAnim);
+
+    let scene2 = new ScrollMagic.Scene({
+      duration: 1000,
+      triggerElement: intro,
+      triggerHook: 0,
+    })
+    .setTween(timeline)
     .addTo(controller);
 
-  let scrollPos = 0;
+    let scrollPos = 0;
+    let offsetExperience = $('.experience').offset().top;
+    let item = $('.experience__item');
 
-  scene.on('update', e => {
-    scrollPos = e.scrollPos / 1000;
-  });
 
-  setInterval(() => {
-    video.currentTime = scrollPos;
-  }, 33.3);
+    scene.on('update', e => {
+      if (e.scrollPos > offsetExperience) {
+        scrollPos = (e.scrollPos - offsetExperience) / 1000;
+      }
+    });
 
+    scene.on('progress', e => {
+      if(e.progress > 0.25) {
+        item.eq(1).addClass('experience__item-active').addClass('experience__item-green');
+      }
+      else {
+        item.eq(1).removeClass('experience__item-active').removeClass('experience__item-green');
+      }
+      if(e.progress > 0.5) {
+        item.eq(2).addClass('experience__item-active').addClass('experience__item-green');
+      }
+      else {
+        item.eq(2).removeClass('experience__item-active').removeClass('experience__item-green');
+      }
+      if(e.progress > 0.75) {
+        item.eq(3).addClass('experience__item-active').addClass('experience__item-green');
+      }
+      else {
+        item.eq(3).removeClass('experience__item-active').removeClass('experience__item-green');
+      }
+    });
+
+    setInterval(() => {
+      video.currentTime = scrollPos;
+    }, 33.3);
+
+  };
 </script>
