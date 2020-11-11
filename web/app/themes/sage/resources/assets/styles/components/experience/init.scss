@@ -2,7 +2,7 @@
   padding: 150px 0;
   background-color: #2a206a;
   position: relative;
-  height: calc(100vh - 81px);
+  height: 100vh;
 
   &__wrapper {
     position: absolute;
@@ -20,7 +20,16 @@
     height: 595px;
     overflow: hidden;
     object-fit: cover;
+    position: relative;
     mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0, #2a206a 13%, #2a206a 70%, rgba(0, 0, 0, 0));
+
+    &-img {
+      display: none;
+      position: fixed;
+      top: 190px;
+      transform: scale(0.32) rotate(-18deg);
+      left: 279px;
+    }
   }
 
   &__animation {

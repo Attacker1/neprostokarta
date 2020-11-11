@@ -14,7 +14,7 @@
         integrity="sha512-vWutwDjKJo+VMAA7IrS/ICTmVYXRMdqtXA27MSuPxGjkbYnKeUKPrIpfsAwIXCzaSDF/qRy/L85ko/yxW0AIiA=="
         crossorigin="anonymous"></script>
 <script>
-  window.onload = function() {
+  jQuery(document).ready(function () {
 
     $('.experience__item').first().addClass('experience__item-active').addClass('experience__item-green');
 
@@ -22,6 +22,10 @@
     const video = intro.querySelector('.experience__animation');
     const text = document.querySelector('.experience__wrapper');
     const card = document.querySelector('.experience__card');
+
+    const hello = document.querySelector('.hello');
+    const helloCard = document.querySelector('.hello__card-svg');
+    const paymentDescr = document.querySelector('.payment__descr');
 
     const controller = new ScrollMagic.Controller();
     let timeline = new TimelineMax();
@@ -36,6 +40,8 @@
 
     const textAnim = TweenMax.fromTo(text, 3, {opacity: 0}, {opacity: 1});
     const cardAnim = TweenMax.fromTo(card, 3, {opacity: 0}, {opacity: 1});
+    const helloCardAnim = TweenMax.fromTo(helloCard, 3, {scaleX: 1, scaleY:1, rotation:7}, {scaleX:0.5, scaleY:0.5, rotation:-160});
+    const helloCardScale = TweenMax.fromTo(helloCard, 1, {scaleX: 0.5, scaleY:0.5, rotation:-160, zIndex:3}, {scaleX:10, scaleY:10, rotation:-90, zIndex:2, display:'none'});
     timeline.add(textAnim).add(cardAnim);
 
     let scene2 = new ScrollMagic.Scene({
@@ -45,6 +51,22 @@
     })
     .setTween(timeline)
     .addTo(controller);
+
+    let scene3 = new ScrollMagic.Scene({
+      duration: 1600,
+      triggerElement: hello,
+      triggerHook: 0,
+    })
+      .setTween(helloCardAnim)
+      .addTo(controller);
+
+    let scene4 = new ScrollMagic.Scene({
+      duration: 1000,
+      triggerElement: paymentDescr,
+      triggerHook: 0,
+    })
+      .setTween(helloCardScale)
+      .addTo(controller);
 
     let scrollPos = 0;
     let offsetExperience = $('.experience').offset().top;
@@ -78,9 +100,10 @@
       }
     });
 
+
     setInterval(() => {
       video.currentTime = scrollPos;
     }, 33.3);
 
-  };
+  });
 </script>
