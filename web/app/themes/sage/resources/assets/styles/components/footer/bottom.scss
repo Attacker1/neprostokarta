@@ -1,0 +1,52 @@
+.footer {
+  &__bottom {
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+    padding-bottom: 50px;
+
+    @media screen and (max-width: 767px) {
+      flex-direction: column-reverse;
+    }
+  }
+
+  &__left {
+    width: 50%;
+    font-size: 14px;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 12px;
+    }
+
+    @media screen and (max-width: 767px) {
+      width: 100%;
+      margin-top: 30px;
+    }
+  }
+
+  &__right {
+    display: flex;
+    width: 50%;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @media screen and (max-width: 767px) {
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
+
+  &__link {
+    margin-right: 20px;
+    color: rgba(255, 255, 255, 0.71);
+    white-space: nowrap;
+    line-height: 21px;
+    font-size: 14px;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 12px;
+      line-height: 18px;
+    }
+  }
+}
