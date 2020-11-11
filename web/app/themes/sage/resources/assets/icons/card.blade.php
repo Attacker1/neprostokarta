@@ -1,4 +1,4 @@
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+<svg class="hello__card-svg" version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="572.000000pt" height="938.000000pt" viewBox="0 0 572.000000 938.000000"
  preserveAspectRatio="xMidYMid meet">
 
