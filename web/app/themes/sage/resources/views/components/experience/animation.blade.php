@@ -16,19 +16,20 @@
 <script>
   jQuery(document).ready(function () {
 
-    $('.experience__item').first().addClass('experience__item-active').addClass('experience__item-green');
-
     const intro = document.querySelector('.experience');
+    const helloCard = document.querySelector('.hello__card-svg');
     const video = intro.querySelector('.experience__animation');
     const text = document.querySelector('.experience__wrapper');
     const card = document.querySelector('.experience__card');
+    const experienceCard = document.querySelector('.experience__card-img');
 
     const hello = document.querySelector('.hello');
-    const helloCard = document.querySelector('.hello__card-svg');
     const paymentDescr = document.querySelector('.payment__descr');
+    const experienceVideo = document.querySelector('.experience__animation');
 
     const controller = new ScrollMagic.Controller();
     let timeline = new TimelineMax();
+    let timelineExperienceCard = new TimelineMax();
 
     const scene = new ScrollMagic.Scene({
       duration: 9000,
@@ -42,7 +43,10 @@
     const cardAnim = TweenMax.fromTo(card, 3, {opacity: 0}, {opacity: 1});
     const helloCardAnim = TweenMax.fromTo(helloCard, 3, {scaleX: 1, scaleY:1, rotation:7}, {scaleX:0.5, scaleY:0.5, rotation:-160});
     const helloCardScale = TweenMax.fromTo(helloCard, 1, {scaleX: 0.5, scaleY:0.5, rotation:-160, zIndex:3}, {scaleX:10, scaleY:10, rotation:-90, zIndex:2, display:'none'});
+    const experienceCardScale = TweenMax.fromTo(experienceCard, 1, {scaleX: 0.32, scaleY:0.32, rotation:-18}, {scaleX:1, scaleY:1, rotation:0});
+    const experienceCardSet = TweenMax.fromTo(experienceCard, 1, {position: 'fixed'}, {position: 'absolute', left: 0, top: 0});
     timeline.add(textAnim).add(cardAnim);
+    timelineExperienceCard.add(experienceCardScale);
 
     let scene2 = new ScrollMagic.Scene({
       duration: 1000,
@@ -66,6 +70,22 @@
       triggerHook: 0,
     })
       .setTween(helloCardScale)
+      .addTo(controller);
+
+    let experienceCardScene = new ScrollMagic.Scene({
+      duration: 800,
+      triggerElement: experienceVideo,
+      triggerHook: 0.5,
+    })
+      .setTween(experienceCardScale)
+      .addTo(controller);
+
+    let experienceCardSetAnimation = new ScrollMagic.Scene({
+      duration: 100,
+      triggerElement: document.querySelector('.results__uptitle'),
+      triggerHook: 0.5,
+    })
+      .setTween(experienceCardSet)
       .addTo(controller);
 
     let scrollPos = 0;
@@ -98,6 +118,10 @@
       else {
         item.eq(3).removeClass('experience__item-active').removeClass('experience__item-green');
       }
+    });
+
+    scene.on('end', function() {
+      $('.experience__card-img').toggleClass('experience__card-active');
     });
 
 
