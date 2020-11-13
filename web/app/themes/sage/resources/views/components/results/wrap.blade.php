@@ -1,5 +1,6 @@
 <div class="results">
   <div class="container">
+    <img src="@asset('images/experience/card.png')" alt="card" class="experience__card-img">
     <div class="results__inner">
       <div class="results__uptitle">The results speak for themselves</div>
       <div class="results__title">140.000.000+</div>

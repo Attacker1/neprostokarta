@@ -9,9 +9,9 @@
         </div>
         @include('components.partner.companies.wrap')
       </div>
-      <canvas class="partner__card">
-
-      </canvas>
+      <div class="partner__card">
+        <img src="@asset('images/partner/cards-textures.jpg')" class="partner__card-img" alt="three_cards">
+      </div>
     </div>
   </div>
 </div>
