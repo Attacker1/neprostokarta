@@ -14,7 +14,7 @@
         integrity="sha512-vWutwDjKJo+VMAA7IrS/ICTmVYXRMdqtXA27MSuPxGjkbYnKeUKPrIpfsAwIXCzaSDF/qRy/L85ko/yxW0AIiA=="
         crossorigin="anonymous"></script>
 <script>
-  jQuery(document).ready(function () {
+  $(document).ready(function () {
 
     const intro = document.querySelector('.experience');
     const helloCard = document.querySelector('.hello__card-svg');
@@ -42,7 +42,7 @@
     const textAnim = TweenMax.fromTo(text, 3, {opacity: 0}, {opacity: 1});
     const cardAnim = TweenMax.fromTo(card, 3, {opacity: 0}, {opacity: 1});
     const helloCardAnim = TweenMax.fromTo(helloCard, 3, {scaleX: 1, scaleY:1, rotation:7}, {scaleX:0.5, scaleY:0.5, rotation:-160});
-    const helloCardScale = TweenMax.fromTo(helloCard, 1, {scaleX: 0.5, scaleY:0.5, rotation:-160, zIndex:3}, {scaleX:10, scaleY:10, rotation:-90, zIndex:2, display:'none'});
+    const helloCardScale = TweenMax.to(helloCard, 1, {scaleX:10, scaleY:10, rotation:-90, zIndex:2, display:'none'});
     const experienceCardScale = TweenMax.fromTo(experienceCard, 1, {scaleX: 0.32, scaleY:0.32, rotation:-18}, {scaleX:1, scaleY:1, rotation:0});
     const experienceCardSet = TweenMax.fromTo(experienceCard, 1, {position: 'fixed'}, {position: 'absolute', left: 0, top: 0});
     timeline.add(textAnim).add(cardAnim);
@@ -129,5 +129,44 @@
       video.currentTime = scrollPos;
     }, 33.3);
 
+
+    // partner section
+    let partnerCardPlace = document.querySelector('.partner__left');
+    let partnerCardWrapper = document.querySelector('.partner__card');
+    const partnerCard = document.querySelector('.partner__card-img');
+    let timelinePartnerCard = new TimelineMax();
+    const partnerCardAnimationWrapper = TweenMax.to(partnerCardWrapper, 1, {position: 'fixed', left: partnerCardPlace.getBoundingClientRect().left , top: screen.height/2 - 315});
+    const firstPartnerCardAnimation = TweenMax.to(partnerCard, 1, {x: -640});
+    const secondPartnerCardAnimation = TweenMax.to(partnerCard, 1, {x: 0});
+    // const partnerCardAnimationSecond = TweenMax.To(partnerCard, 1, {translateX: -10});
+    // timelinePartnerCard.add(partnerCardAnimationWrapper).add(partnerCardAnimation);
+
+    let partnerCardWrapperScene = new ScrollMagic.Scene({
+      duration: 1,
+      triggerElement: '.partner__wrapper',
+      triggerHook: 0.1,
+    })
+      .setTween(partnerCardAnimationWrapper)
+      .addTo(controller);
+
+    let firstPartnerCardScene = new ScrollMagic.Scene({
+      duration: 500,
+      triggerElement: '.partner__wrapper',
+      triggerHook: 0.1,
+    })
+      .setTween(firstPartnerCardAnimation)
+      .addTo(controller);
+
+    let secondPartnerCardScene = new ScrollMagic.Scene({
+      duration: 500,
+      triggerElement: '.partner__text',
+      triggerHook: 0.1,
+    })
+      .setTween(secondPartnerCardAnimation)
+      .addTo(controller);
+
+    partnerCardScene.on('progress', function(e) {
+      console.log(e.state);
+    })
   });
 </script>

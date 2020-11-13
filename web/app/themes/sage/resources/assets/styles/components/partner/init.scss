@@ -5,6 +5,24 @@
     width: 450px;
   }
 
+  &__card {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 630px;
+    height: 300px;
+    border-radius: 30px;
+    overflow: hidden;
+    transform: rotate(-5deg);
+
+    &-img {
+      width: 1890px;
+      height: 100%;
+      object-fit: cover;
+      transform: translateX(-1270px);
+    }
+  }
+
   &__wrapper {
     width: 360px;
   }
