@@ -136,20 +136,22 @@
 
 
     // partner section
-    let partnerCardPlace = document.querySelector('.partner__left');
+    let partnerCardPlace = document.querySelector('.partner__inner');
     let partnerCardWrapper = document.querySelector('.partner__card');
-    const partnerCard = document.querySelector('.partner__card-img');
+    const partnerCard = document.querySelector('.partner__front');
     let timelinePartnerCard = new TimelineMax();
-    const partnerCardAnimationWrapper = TweenMax.to(partnerCardWrapper, 1, {position: 'fixed', left: partnerCardPlace.getBoundingClientRect().right , top: screen.height/2 - 315});
-    const firstPartnerCardAnimation = TweenMax.to(partnerCard, 1, {x: -640});
+    const partnerCardAnimationWrapper = TweenMax.to(partnerCardWrapper, 1, {position: 'fixed', left: partnerCardPlace.getBoundingClientRect().right - 540, top: screen.height/2 - 290});
+    const firstPartnerCardAnimation = TweenMax.to(partnerCard, 1, {x: -542});
     const secondPartnerCardAnimation = TweenMax.to(partnerCard, 1, {x: 0});
-    // const partnerCardAnimationSecond = TweenMax.To(partnerCard, 1, {translateX: -10});
-    // timelinePartnerCard.add(partnerCardAnimationWrapper).add(partnerCardAnimation);
+    const lastPartnerCardAnimation = TweenMax.to(partnerCardWrapper, 1, {rotationX: -180, rotation: 90, scale: 0.6, left: partnerCardPlace.getBoundingClientRect().right - 800});
+    const stopCardAnimation = TweenMax.to(partnerCardWrapper, 1, {position: 'absolute', top: $('.start__title').offset().top - $('.partner__title').offset().top - 192, left: 340});
+
+
 
     let partnerCardWrapperScene = new ScrollMagic.Scene({
       duration: 1,
       triggerElement: '.partner__wrapper',
-      offset: screen.height/2 - 315,
+      offset: screen.height/2 - 290,
     })
       .setTween(partnerCardAnimationWrapper)
       .addTo(controller);
@@ -168,6 +170,22 @@
       triggerHook: 0.15,
     })
       .setTween(secondPartnerCardAnimation)
+      .addTo(controller);
+
+    let lastAnimationCardScene = new ScrollMagic.Scene({
+      duration: 500,
+      triggerElement: '.partner__trigger',
+      triggerHook: 0.5,
+    })
+      .setTween(lastPartnerCardAnimation)
+      .addTo(controller);
+
+    let stopCardScene = new ScrollMagic.Scene({
+      duration: 1,
+      triggerElement: '.start__title',
+      triggerHook: 0.5,
+    })
+      .setTween(stopCardAnimation)
       .addTo(controller);
   }
 </script>
