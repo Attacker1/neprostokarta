@@ -56,6 +56,10 @@
     margin-top: 86px;
     transform: translateX(50px);
 
+    @media screen and (max-width: 1170px) {
+      transform: translateX(20px);
+    }
+
     @media screen and (max-width: 1023px) {
       font-size: 64px;
       letter-spacing: -2.23px;

@@ -33,7 +33,7 @@
 
 
     $(experienceCard).css({
-      'left': video.getBoundingClientRect().right - 440,
+      'left': video.getBoundingClientRect().right - 500,
     });
 
     const scene = new ScrollMagic.Scene({
@@ -44,12 +44,17 @@
       .setPin(intro)
       .addTo(controller);
 
+    let experienceCardFinish = -100;
+    if ($('body').width() <= 1170) {
+      experienceCardFinish = video.getBoundingClientRect().right - 500;
+    }
+
     const textAnim = TweenMax.fromTo(text, 3, {opacity: 0}, {opacity: 1});
     const cardAnim = TweenMax.fromTo(card, 3, {opacity: 0}, {opacity: 1});
     const helloCardAnim = TweenMax.fromTo(helloCard, 3, {scaleX: 1, scaleY:1, rotation:7}, {scaleX:0.5, scaleY:0.5, rotation:-160});
     const helloCardScale = TweenMax.to(helloCard, 1, {scaleX:10, scaleY:10, rotation:-90, zIndex:2, display:'none'});
-    const experienceCardScale = TweenMax.fromTo(experienceCard, 1, {scaleX: 0.1, scaleY:0.1, rotation:-18}, {scaleX:1, scaleY:1, rotation:0});
-    const experienceCardSet = TweenMax.to(experienceCard, 1,  {position: 'absolute', left: 0, top: 0});
+    const experienceCardScale = TweenMax.fromTo(experienceCard, 1, {scaleX: 0.3, scaleY:0.3, rotation:-18}, {scaleX:1, scaleY:1, rotation:0});
+    const experienceCardSet = TweenMax.to(experienceCard, 1,  {position: 'absolute', left: experienceCardFinish, top: 0});
     timeline.add(textAnim).add(cardAnim);
     timelineExperienceCard.add(experienceCardScale);
 
@@ -80,7 +85,7 @@
     let experienceCardScene = new ScrollMagic.Scene({
       duration: 800,
       triggerElement: experienceVideo,
-      triggerHook: 0.4,
+      triggerHook: 0.3,
     })
       .setTween(experienceCardScale)
       .addTo(controller);
@@ -88,10 +93,15 @@
     let experienceCardSetAnimation = new ScrollMagic.Scene({
       duration: 1,
       triggerElement: '.results__title',
-      triggerHook: 0.4,
     })
       .setTween(experienceCardSet)
       .addTo(controller);
+
+    if ($('body').width() >= 1170) {
+      experienceCardSetAnimation.triggerHook(0.55);
+    } else {
+      experienceCardSetAnimation.triggerHook(0.27);
+    }
 
     let scrollPos = 0;
     let offsetExperience = $('.experience').offset().top;
@@ -138,9 +148,14 @@
     // partner section
     let partnerCardPlace = document.querySelector('.partner__inner');
     let partnerCardWrapper = document.querySelector('.partner__card');
+    let posCard = $('body').width() - partnerCardPlace.getBoundingClientRect().right;
+    if ($('body').width() <= 1170) {
+      posCard = 20;
+    }
+
     const partnerCard = document.querySelector('.partner__front');
     let timelinePartnerCard = new TimelineMax();
-    const partnerCardAnimationWrapper = TweenMax.to(partnerCardWrapper, 1, {position: 'fixed', left: partnerCardPlace.getBoundingClientRect().right - 540, top: screen.height/2 - 290});
+    const partnerCardAnimationWrapper = TweenMax.to(partnerCardWrapper, 1, {position: 'fixed', right: posCard, top: screen.height/2 - 290});
     const firstPartnerCardAnimation = TweenMax.to(partnerCard, 1, {x: -542});
     const secondPartnerCardAnimation = TweenMax.to(partnerCard, 1, {x: 0});
     const lastPartnerCardAnimation = TweenMax.to(partnerCardWrapper, 1, {rotationX: -180, rotation: 90, scale: 0.6, left: partnerCardPlace.getBoundingClientRect().right - 800});
