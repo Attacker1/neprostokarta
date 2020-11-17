@@ -3,7 +3,7 @@
     <img src="@asset('images/partner/logo/' . $logo)" alt="logo" class="partner__logo">
   @endif
   @if($descr)
-    <div class="partner__text">{!! $descr or '' !!}</div>
+    <div class="partner__text {{ $class or '' }}">{!! $descr or '' !!}</div>
   @endif
   <div class="partner__representative">
     @if($avatar)
