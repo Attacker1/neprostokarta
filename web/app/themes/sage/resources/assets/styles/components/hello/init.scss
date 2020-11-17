@@ -91,6 +91,10 @@
     position: relative;
     z-index: 2;
 
+    @media screen and (max-width: 1023px) {
+      margin-top: 200px;
+    }
+
     @media screen and (max-width: 767px) {
       justify-content: space-between;
       flex-wrap: wrap;
@@ -145,20 +149,20 @@
 
   &__right {
     position: relative;
+  }
 
-    video {
-      width: 431px;
-      height: 495px;
+  &__video {
+    width: 431px;
+    height: 495px;
 
-      @media screen and (max-width: 1023px) {
-        width: 280px;
-        height: 322px;
-      }
+    @media screen and (max-width: 1023px) {
+      width: 280px;
+      height: 322px;
+    }
 
-      @media screen and (max-width: 480px) {
-        width: 215px;
-        height: 247px;
-      }
+    @media screen and (max-width: 480px) {
+      width: 215px;
+      height: 247px;
     }
   }
 
@@ -216,6 +220,11 @@
       transform: rotate(7deg);
       left: 70%;
       z-index: 3;
+
+      @media screen and (max-width: 1024px) {
+        width: 270px;
+        height: 450px;
+      }
     }
 
     img {
