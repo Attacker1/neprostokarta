@@ -26,6 +26,8 @@
     line-height: 60.88px;
     letter-spacing: -0.63px;
     font-weight: 500;
+    position: relative;
+    z-index: 3;
   }
 
   &__subtitle {
@@ -38,6 +40,11 @@
   &__phone {
     width: 486px;
     height: 672px;
+
+    @media screen and (max-width: 1023px) {
+      width: 300px;
+      height: 414px;
+    }
   }
 
   &__button {
@@ -58,5 +65,9 @@
     color: hsla(0, 0%, 100%, 0.7);
     padding: 30px 0;
     border-top: 1px solid hsla(0, 0%, 100%, 0.1);
+
+    @media screen and (max-width: 1023px) {
+      margin-top: 100px;
+    }
   }
 }

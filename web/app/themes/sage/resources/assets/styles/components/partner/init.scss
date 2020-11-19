@@ -1,6 +1,14 @@
 .partner {
   padding: 90px 0;
 
+  &__inner {
+    position: relative;
+
+    .scrollmagic-pin-spacer {
+      display: block !important;
+    }
+  }
+
   &__left {
     width: 450px;
   }
@@ -32,6 +40,11 @@
       img {
         width: 1620px;
         height: 330px;
+
+        @media screen and (max-width: 1023px) {
+          width: 1050px;
+          height: 215px;
+        }
       }
     }
 
@@ -45,16 +58,34 @@
       transform: rotateY(-180deg);
       width: 540px;
       height: 330px;
+
+      @media screen and (max-width: 1023px) {
+        height: 215px;
+        width: 350px;
+      }
     }
 
     @media screen and (max-width: 1170px) {
       height: 276px;
       width: 450px;
     }
+
+    @media screen and (max-width: 1023px) {
+      height: 215px;
+      width: 350px;
+    }
+
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
   }
 
   &__front {
     transform: translateX(-1082px);
+
+    @media screen and (max-width: 1023px) {
+      transform: translateX(-702px);
+    }
   }
 
   &__wrapper {
