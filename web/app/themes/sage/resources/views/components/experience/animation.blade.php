@@ -32,31 +32,65 @@
     let timelineExperienceCard = new TimelineMax();
 
 
-    $(experienceCard).css({
-      'left': video.getBoundingClientRect().right - 500,
-    });
-
-    const scene = new ScrollMagic.Scene({
-      duration: 9000,
-      triggerElement: intro,
-      triggerHook: 0.06,
-    })
-      .setPin(intro)
-      .addTo(controller);
-
     let experienceCardFinish = -100;
     if ($('body').width() <= 1170) {
-      experienceCardFinish = video.getBoundingClientRect().right - 500;
+      experienceCardFinish = video.getBoundingClientRect().left + 125;
     }
+
+    let cardOpacity = 1;
+    if ($('body').width() <= 768) {
+      cardOpacity = 0;
+    }
+
 
     const textAnim = TweenMax.fromTo(text, 3, {opacity: 0}, {opacity: 1});
     const cardAnim = TweenMax.fromTo(card, 3, {opacity: 0}, {opacity: 1});
-    const helloCardAnim = TweenMax.fromTo(helloCard, 3, {scaleX: 1, scaleY:1, rotation:7}, {scaleX:0.5, scaleY:0.5, rotation:-160});
+    const helloCardAnim = TweenMax.fromTo(helloCard, 3, {scaleX: 1, scaleY:1, rotation:7}, {scaleX:0.5, scaleY:0.5, rotation:-160, opacity: cardOpacity});
     const helloCardScale = TweenMax.to(helloCard, 1, {scaleX:10, scaleY:10, rotation:-90, zIndex:2, display:'none'});
-    const experienceCardScale = TweenMax.fromTo(experienceCard, 1, {scaleX: 0.3, scaleY:0.3, rotation:-18}, {scaleX:1, scaleY:1, rotation:0});
-    const experienceCardSet = TweenMax.to(experienceCard, 1,  {position: 'absolute', left: experienceCardFinish, top: 0});
-    timeline.add(textAnim).add(cardAnim);
-    timelineExperienceCard.add(experienceCardScale);
+
+
+    // Анимация видео
+    if ($('body').width() >= 768) {
+      $(experienceCard).css({
+        'left': video.getBoundingClientRect().right - $(video).width() * 0.75,
+      });
+      const experienceCardScale = TweenMax.fromTo(experienceCard, 1, {
+        scaleX: 0.3,
+        scaleY: 0.3,
+        rotation: -18
+      }, {scaleX: 1, scaleY: 1, rotation: 0});
+      const experienceCardSet = TweenMax.to(experienceCard, 1, {
+        position: 'absolute',
+        left: experienceCardFinish,
+        top: 0
+      });
+
+      const scene = new ScrollMagic.Scene({
+        duration: 9000,
+        triggerElement: intro,
+        triggerHook: 0.06,
+      })
+        .setPin(intro)
+        .addTo(controller);
+
+      let experienceCardScene = new ScrollMagic.Scene({
+        duration: 800,
+        triggerElement: experienceVideo,
+        triggerHook: 0.3,
+      })
+        .setTween(experienceCardScale)
+        .addTo(controller);
+
+      let experienceCardSetAnimation = new ScrollMagic.Scene({
+        duration: 1,
+        triggerElement: '.results__title',
+      })
+        .setTween(experienceCardSet)
+        .addTo(controller);
+    } else {
+
+    }
+
 
     let scene2 = new ScrollMagic.Scene({
       duration: 1000,
@@ -82,20 +116,6 @@
       .setTween(helloCardScale)
       .addTo(controller);
 
-    let experienceCardScene = new ScrollMagic.Scene({
-      duration: 800,
-      triggerElement: experienceVideo,
-      triggerHook: 0.3,
-    })
-      .setTween(experienceCardScale)
-      .addTo(controller);
-
-    let experienceCardSetAnimation = new ScrollMagic.Scene({
-      duration: 1,
-      triggerElement: '.results__title',
-    })
-      .setTween(experienceCardSet)
-      .addTo(controller);
 
     if ($('body').width() >= 1170) {
       experienceCardSetAnimation.triggerHook(0.55);
@@ -149,26 +169,29 @@
     let partnerCardPlace = document.querySelector('.partner__inner');
     let partnerCardWrapper = document.querySelector('.partner__card');
     let posCard = $('body').width() - partnerCardPlace.getBoundingClientRect().right;
-    if ($('body').width() <= 1170) {
-      posCard = 20;
-    }
+
 
     const partnerCard = document.querySelector('.partner__front');
     let timelinePartnerCard = new TimelineMax();
-    const partnerCardAnimationWrapper = TweenMax.to(partnerCardWrapper, 1, {position: 'fixed', right: posCard, top: screen.height/2 - 290});
-    const firstPartnerCardAnimation = TweenMax.to(partnerCard, 1, {x: -542});
+    let firstCardSlide = -542;
+    let finishCardSet = -260;
+    if ($('body').width() <= 1024) {
+      firstCardSlide = -352;
+      finishCardSet = -180;
+    }
+    const showCard = TweenMax.fromTo(partnerCardWrapper, 1, {display: 'none'}, {display: 'block'});
+    const firstPartnerCardAnimation = TweenMax.to(partnerCard, 1, {x: firstCardSlide});
     const secondPartnerCardAnimation = TweenMax.to(partnerCard, 1, {x: 0});
-    const lastPartnerCardAnimation = TweenMax.to(partnerCardWrapper, 1, {rotationX: -180, rotation: 90, scale: 0.6, left: partnerCardPlace.getBoundingClientRect().right - 800});
-    const stopCardAnimation = TweenMax.to(partnerCardWrapper, 1, {position: 'absolute', top: $('.start__title').offset().top - $('.partner__title').offset().top - 192, left: 340});
-
+    const lastPartnerCardAnimation = TweenMax.to(partnerCardWrapper, 1,{rotationX: -180, rotation: 90, scale: 0.6, x: finishCardSet});
 
 
     let partnerCardWrapperScene = new ScrollMagic.Scene({
-      duration: 1,
+      duration: $('.start__title').offset().top - $('.partner__title').offset().top - 192,
       triggerElement: '.partner__wrapper',
-      offset: screen.height/2 - 290,
+      triggerHook: 0.2,
     })
-      .setTween(partnerCardAnimationWrapper)
+      .setTween(showCard)
+      .setPin(partnerCardWrapper)
       .addTo(controller);
 
     let firstPartnerCardScene = new ScrollMagic.Scene({
@@ -188,19 +211,12 @@
       .addTo(controller);
 
     let lastAnimationCardScene = new ScrollMagic.Scene({
-      duration: 500,
+      duration: 600,
       triggerElement: '.partner__trigger',
       triggerHook: 0.5,
     })
       .setTween(lastPartnerCardAnimation)
       .addTo(controller);
 
-    let stopCardScene = new ScrollMagic.Scene({
-      duration: 1,
-      triggerElement: '.start__title',
-      triggerHook: 0.5,
-    })
-      .setTween(stopCardAnimation)
-      .addTo(controller);
   }
 </script>

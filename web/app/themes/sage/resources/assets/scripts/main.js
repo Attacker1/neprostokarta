@@ -1,5 +1,6 @@
 // import external dependencies
 import 'jquery';
+import 'slick-carousel/slick/slick';
 
 // Import components
 import './components/header/init'

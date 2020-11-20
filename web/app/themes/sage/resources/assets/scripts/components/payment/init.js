@@ -17,4 +17,15 @@ jQuery(document).ready(function () {
             // $(this).siblings(startAnimation).addClass('payment__video-visible');
         })
     })
+
+    if ($('body').width() <= 1023) {
+        $('.payment__wrapper').slick({
+            slidesToShow: 1,
+            infinite: false,
+            dots: true,
+            slidesToScroll: 1,
+            adaptiveHeight: true,
+            arrows : false,
+        })
+    }
 });
