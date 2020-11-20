@@ -2,6 +2,10 @@
   padding: 268px 0 90px 0;
   background-color: #f7f7f8;
 
+  @media screen and (max-width: 767px) {
+    padding: 45px 0;
+  }
+
   &__title {
     max-width: 630px;
     color: #2a206a;
@@ -13,6 +17,12 @@
     margin-top: 17px;
     color: #4d4476;
     max-width: 450px;
+
+    @media screen and (max-width: 767px) {
+      font-size: 16px;
+      line-height: 26px;
+      margin-top: 10px;
+    }
   }
 
   &__wrapper {

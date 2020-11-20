@@ -21,7 +21,7 @@
     const video = intro.querySelector('.experience__animation');
     const text = document.querySelector('.experience__wrapper');
     const card = document.querySelector('.experience__card');
-    const experienceCard = document.querySelector('.experience__card-img');
+    const experienceCard = document.querySelector('.results__card');
 
     const hello = document.querySelector('.hello');
     const paymentDescr = document.querySelector('.payment__descr');
@@ -73,6 +73,37 @@
         .setPin(intro)
         .addTo(controller);
 
+      scene.on('update', e => {
+        if (e.scrollPos > offsetExperience) {
+          scrollPos = (e.scrollPos - offsetExperience) / 1000;
+        }
+      });
+
+      scene.on('progress', e => {
+        if(e.progress > 0.25) {
+          item.eq(1).addClass('experience__item-active').addClass('experience__item-green');
+        }
+        else {
+          item.eq(1).removeClass('experience__item-active').removeClass('experience__item-green');
+        }
+        if(e.progress > 0.5) {
+          item.eq(2).addClass('experience__item-active').addClass('experience__item-green');
+        }
+        else {
+          item.eq(2).removeClass('experience__item-active').removeClass('experience__item-green');
+        }
+        if(e.progress > 0.75) {
+          item.eq(3).addClass('experience__item-active').addClass('experience__item-green');
+        }
+        else {
+          item.eq(3).removeClass('experience__item-active').removeClass('experience__item-green');
+        }
+      });
+
+      scene.on('end', function() {
+        $('.results__card').toggleClass('results__card-active');
+      });
+
       let experienceCardScene = new ScrollMagic.Scene({
         duration: 800,
         triggerElement: experienceVideo,
@@ -87,6 +118,12 @@
       })
         .setTween(experienceCardSet)
         .addTo(controller);
+
+      if ($('body').width() >= 1170) {
+        experienceCardSetAnimation.triggerHook(0.55);
+      } else {
+        experienceCardSetAnimation.triggerHook(0.27);
+      }
     } else {
 
     }
@@ -117,47 +154,11 @@
       .addTo(controller);
 
 
-    if ($('body').width() >= 1170) {
-      experienceCardSetAnimation.triggerHook(0.55);
-    } else {
-      experienceCardSetAnimation.triggerHook(0.27);
-    }
-
     let scrollPos = 0;
     let offsetExperience = $('.experience').offset().top;
     let item = $('.experience__item');
 
 
-    scene.on('update', e => {
-      if (e.scrollPos > offsetExperience) {
-        scrollPos = (e.scrollPos - offsetExperience) / 1000;
-      }
-    });
-
-    scene.on('progress', e => {
-      if(e.progress > 0.25) {
-        item.eq(1).addClass('experience__item-active').addClass('experience__item-green');
-      }
-      else {
-        item.eq(1).removeClass('experience__item-active').removeClass('experience__item-green');
-      }
-      if(e.progress > 0.5) {
-        item.eq(2).addClass('experience__item-active').addClass('experience__item-green');
-      }
-      else {
-        item.eq(2).removeClass('experience__item-active').removeClass('experience__item-green');
-      }
-      if(e.progress > 0.75) {
-        item.eq(3).addClass('experience__item-active').addClass('experience__item-green');
-      }
-      else {
-        item.eq(3).removeClass('experience__item-active').removeClass('experience__item-green');
-      }
-    });
-
-    scene.on('end', function() {
-      $('.experience__card-img').toggleClass('experience__card-active');
-    });
 
 
     setInterval(() => {
@@ -166,57 +167,63 @@
 
 
     // partner section
-    let partnerCardPlace = document.querySelector('.partner__inner');
-    let partnerCardWrapper = document.querySelector('.partner__card');
-    let posCard = $('body').width() - partnerCardPlace.getBoundingClientRect().right;
+    if ($('body').width() >= 767) {
+      let partnerCardPlace = document.querySelector('.partner__inner');
+      let partnerCardWrapper = document.querySelector('.partner__card');
+      let posCard = $('body').width() - partnerCardPlace.getBoundingClientRect().right;
 
 
-    const partnerCard = document.querySelector('.partner__front');
-    let timelinePartnerCard = new TimelineMax();
-    let firstCardSlide = -542;
-    let finishCardSet = -260;
-    if ($('body').width() <= 1024) {
-      firstCardSlide = -352;
-      finishCardSet = -180;
+      const partnerCard = document.querySelector('.partner__front');
+      let timelinePartnerCard = new TimelineMax();
+      let firstCardSlide = -542;
+      let finishCardSet = -260;
+      if ($('body').width() <= 1024) {
+        firstCardSlide = -352;
+        finishCardSet = -180;
+      }
+      const showCard = TweenMax.fromTo(partnerCardWrapper, 1, {display: 'none'}, {display: 'block'});
+      const firstPartnerCardAnimation = TweenMax.to(partnerCard, 1, {x: firstCardSlide});
+      const secondPartnerCardAnimation = TweenMax.to(partnerCard, 1, {x: 0});
+      const lastPartnerCardAnimation = TweenMax.to(partnerCardWrapper, 1, {
+        rotationX: -180,
+        rotation: 90,
+        scale: 0.6,
+        x: finishCardSet
+      });
+
+
+      let partnerCardWrapperScene = new ScrollMagic.Scene({
+        duration: $('.start__title').offset().top - $('.partner__title').offset().top - 192,
+        triggerElement: '.partner__wrapper',
+        triggerHook: 0.2,
+      })
+        .setTween(showCard)
+        .setPin(partnerCardWrapper)
+        .addTo(controller);
+
+      let firstPartnerCardScene = new ScrollMagic.Scene({
+        duration: 500,
+        triggerElement: '.partner__wrapper',
+        offset: screen.height / 2 - 315,
+      })
+        .setTween(firstPartnerCardAnimation)
+        .addTo(controller);
+
+      let secondPartnerCardScene = new ScrollMagic.Scene({
+        duration: 500,
+        triggerElement: '.partner__text',
+        triggerHook: 0.15,
+      })
+        .setTween(secondPartnerCardAnimation)
+        .addTo(controller);
+
+      let lastAnimationCardScene = new ScrollMagic.Scene({
+        duration: 600,
+        triggerElement: '.partner__trigger',
+        triggerHook: 0.5,
+      })
+        .setTween(lastPartnerCardAnimation)
+        .addTo(controller);
     }
-    const showCard = TweenMax.fromTo(partnerCardWrapper, 1, {display: 'none'}, {display: 'block'});
-    const firstPartnerCardAnimation = TweenMax.to(partnerCard, 1, {x: firstCardSlide});
-    const secondPartnerCardAnimation = TweenMax.to(partnerCard, 1, {x: 0});
-    const lastPartnerCardAnimation = TweenMax.to(partnerCardWrapper, 1,{rotationX: -180, rotation: 90, scale: 0.6, x: finishCardSet});
-
-
-    let partnerCardWrapperScene = new ScrollMagic.Scene({
-      duration: $('.start__title').offset().top - $('.partner__title').offset().top - 192,
-      triggerElement: '.partner__wrapper',
-      triggerHook: 0.2,
-    })
-      .setTween(showCard)
-      .setPin(partnerCardWrapper)
-      .addTo(controller);
-
-    let firstPartnerCardScene = new ScrollMagic.Scene({
-      duration: 500,
-      triggerElement: '.partner__wrapper',
-      offset: screen.height/2 - 315,
-    })
-      .setTween(firstPartnerCardAnimation)
-      .addTo(controller);
-
-    let secondPartnerCardScene = new ScrollMagic.Scene({
-      duration: 500,
-      triggerElement: '.partner__text',
-      triggerHook: 0.15,
-    })
-      .setTween(secondPartnerCardAnimation)
-      .addTo(controller);
-
-    let lastAnimationCardScene = new ScrollMagic.Scene({
-      duration: 600,
-      triggerElement: '.partner__trigger',
-      triggerHook: 0.5,
-    })
-      .setTween(lastPartnerCardAnimation)
-      .addTo(controller);
-
   }
 </script>

@@ -5,6 +5,10 @@
     &:last-child {
       margin-bottom: 150px;
     }
+
+    @media screen and (max-width: 767px) {
+      margin-top: 90px;
+    }
   }
 
   &__logo {
@@ -29,6 +33,11 @@
     line-height: 1.81818182;
     letter-spacing: 0;
     color: #2a206a;
+
+    @media screen and (max-width: 767px) {
+      font-size: 18px;
+      line-height: 1.66666667;
+    }
   }
 
   &__about {

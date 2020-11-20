@@ -26,6 +26,22 @@
     }
   }
 
+  &__card {
+    display: none;
+    position: fixed;
+    top: 190px;
+    transform: scale(0.32) rotate(-18deg);
+    left: 279px;
+
+    &-active {
+      display: block;
+    }
+
+    @media screen and (max-width: 1170px) {
+      width: 250px;
+    }
+  }
+
   &__uptitle {
     font-size: 40px;
     color: #fff;
