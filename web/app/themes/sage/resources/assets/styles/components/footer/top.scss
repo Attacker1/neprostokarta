@@ -2,6 +2,10 @@
   background-color: #2a206a;
   padding-top: 6%;
 
+  @media screen and (max-width: 767px) {
+    padding-top: 45px;
+  }
+
   &__top {
     display: flex;
     justify-content: space-between;
@@ -27,6 +31,7 @@
 
     @media screen and (max-width: 767px) {
       height: 45.2px;
+      margin-right: 0;
       overflow: hidden;
       transition: height 0.5s;
 
@@ -58,6 +63,8 @@
       padding-bottom: 25px;
       font-size: 18px;
       border-bottom: 1px solid #3f3679;
+      display: flex;
+      align-items: center;
     }
   }
 

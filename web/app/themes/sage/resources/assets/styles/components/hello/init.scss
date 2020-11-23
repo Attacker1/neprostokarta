@@ -249,6 +249,10 @@
         height: 255px;
       }
 
+      @media screen and (max-width: 767px) {
+        top: 120px;
+      }
+
       @media screen and (max-width: 480px) {
         width: 70vw;
         height: auto;

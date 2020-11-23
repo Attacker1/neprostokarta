@@ -32,7 +32,7 @@
     let timelineExperienceCard = new TimelineMax();
 
 
-    let experienceCardFinish = -100;
+    let experienceCardFinish = -50;
     if ($('body').width() <= 1170) {
       experienceCardFinish = video.getBoundingClientRect().left + 125;
     }
