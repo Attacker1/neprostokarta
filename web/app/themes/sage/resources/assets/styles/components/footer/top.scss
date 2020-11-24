@@ -34,10 +34,10 @@
       margin-right: 0;
       overflow: hidden;
       transition: height 0.5s;
+    }
 
-      &:hover {
-        height: 100%;
-      }
+    &-active {
+      height: 100%;
     }
   }
 
