@@ -39,6 +39,10 @@
   &__inner {
     display: flex;
     justify-content: space-between;
+
+    .scrollmagic-pin-spacer {
+      display: block !important;
+    }
   }
 
   &__card {
@@ -50,6 +54,22 @@
     top: 0;
     left: -200px;
     mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0, #2a206a 13%, #2a206a 70%, rgba(0, 0, 0, 0));
+
+    &-img {
+      display: none;
+      position: absolute;
+      top: 0;
+      transform: scale(0.32) rotate(-18deg);
+      left: 0;
+
+      &-active {
+        display: block;
+      }
+
+      @media screen and (max-width: 1170px) {
+        width: 250px;
+      }
+    }
 
     &-active {
       display: block;

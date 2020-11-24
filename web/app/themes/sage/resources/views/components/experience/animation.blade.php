@@ -21,7 +21,7 @@
     const video = intro.querySelector('.experience__animation');
     const text = document.querySelector('.experience__wrapper');
     const card = document.querySelector('.experience__card');
-    const experienceCard = document.querySelector('.results__card');
+    const experienceCard = document.querySelector('.experience__card-img');
 
     const hello = document.querySelector('.hello');
     const paymentDescr = document.querySelector('.payment__descr');
@@ -52,18 +52,20 @@
     // Анимация видео
     if ($('body').width() >= 768) {
       $(experienceCard).css({
-        'left': video.getBoundingClientRect().right - $(video).width() * 0.75,
+        'left': -100,
       });
+
+      if ($('body').width() <= 1170) {
+        $(experienceCard).css({
+          'left': 150,
+        });
+      }
+
       const experienceCardScale = TweenMax.fromTo(experienceCard, 1, {
         scaleX: 0.3,
         scaleY: 0.3,
         rotation: -18
       }, {scaleX: 1, scaleY: 1, rotation: 0});
-      const experienceCardSet = TweenMax.to(experienceCard, 1, {
-        position: 'absolute',
-        left: experienceCardFinish,
-        top: 0
-      });
 
       const scene = new ScrollMagic.Scene({
         duration: 9000,
@@ -101,29 +103,18 @@
       });
 
       scene.on('end', function() {
-        $('.results__card').toggleClass('results__card-active');
+        $('.experience__card-img').toggleClass('experience__card-active');
       });
 
       let experienceCardScene = new ScrollMagic.Scene({
         duration: 800,
         triggerElement: experienceVideo,
-        triggerHook: 0.3,
+        triggerHook: 0.1,
       })
         .setTween(experienceCardScale)
+        .setPin(experienceCard)
         .addTo(controller);
 
-      let experienceCardSetAnimation = new ScrollMagic.Scene({
-        duration: 1,
-        triggerElement: '.results__title',
-      })
-        .setTween(experienceCardSet)
-        .addTo(controller);
-
-      if ($('body').width() >= 1170) {
-        experienceCardSetAnimation.triggerHook(0.55);
-      } else {
-        experienceCardSetAnimation.triggerHook(0.27);
-      }
     } else {
 
     }
