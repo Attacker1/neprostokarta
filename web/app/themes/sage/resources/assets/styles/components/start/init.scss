@@ -1,6 +1,11 @@
 .start {
   position: relative;
 
+  @media screen and (max-width: 767px) {
+    background-color: #2a206a;
+    padding: 45px 0;
+  }
+
   &__bg {
     position: absolute;
     top: 0;

@@ -4,5 +4,11 @@
     line-height: 54px;
     letter-spacing: -0.7px;
     font-weight: 400;
+
+    @media screen and (max-width: 767px) {
+      font-size: 26px;
+      line-height: 34px;
+      letter-spacing: -0.472727px;
+    }
   }
 }

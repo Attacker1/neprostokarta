@@ -11,10 +11,12 @@
                   src="{{ get_theme_file_uri() .  '/resources/assets/videos/experience/card-animation.mp4' }}"/>
         </video>
       </div>
+      <img src="@asset('images/experience/card.png')" alt="card" class="experience__card-img">
     </div>
   </div>
   <div class="experience__wrapper">
     <div class="experience__title">Create a tailored payment experience</div>
+    <img src="@asset('images/experience/card.png')" alt="card" class="experience__mobile-card">
     @include('components.experience.items.wrap')
   </div>
 </div>
