@@ -97,3 +97,4 @@ Container::getInstance()
  */
 require_once dirname(__DIR__ . '/resources') . '/functions/remove.php';
 require_once dirname(__DIR__ . '/resources') . '/functions/walker.php';
+require_once dirname(__DIR__ . '/resources') . '/functions/js_vars.php';

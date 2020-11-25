@@ -108,9 +108,13 @@
       const context = video.getContext('2d');
 
       const currentFrame = index => (
-        `app/themes/sage/resources/assets/images/experience/animation/card-animation_${index.toString().padStart(3, '0')}}.jpg`
+        `${window.wp_data.experience_img}card-animation_${index.toString().padStart(3, '0')}.jpg`
       )
 
+      const frameCount = 72;
+
+      video.height = 595;
+      video.width = 600;
       const img = new Image();
       img.src = currentFrame(1);
       img.onload = function(){
@@ -122,11 +126,11 @@
         context.drawImage(img, 0, 0);
       }
 
+      scene.on('progress', function (e) {
+        requestAnimationFrame( () => updateImage(Math.round(e.progress * frameCount)))
+      })
 
 
-      setInterval(() => {
-        video.currentTime = scrollPos;
-      }, 33.3);
 
       scene.on('end', function() {
         $('.experience__card-img').toggleClass('experience__card-active');
