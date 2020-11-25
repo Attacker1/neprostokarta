@@ -102,6 +102,32 @@
         }
       });
 
+      let scrollPos = 0;
+      let offsetExperience = $('.experience').offset().top;
+      let item = $('.experience__item');
+      const context = video.getContext('2d');
+
+      const currentFrame = index => (
+        `app/themes/sage/resources/assets/images/experience/animation/card-animation_${index.toString().padStart(3, '0')}}.jpg`
+      )
+
+      const img = new Image();
+      img.src = currentFrame(1);
+      img.onload = function(){
+        context.drawImage(img, 0, 0)
+      }
+
+      const updateImage = index => {
+        img.src = currentFrame(index);
+        context.drawImage(img, 0, 0);
+      }
+
+
+
+      setInterval(() => {
+        video.currentTime = scrollPos;
+      }, 33.3);
+
       scene.on('end', function() {
         $('.experience__card-img').toggleClass('experience__card-active');
       });
@@ -129,11 +155,12 @@
     .addTo(controller);
 
     let scene3 = new ScrollMagic.Scene({
-      duration: 1600,
+      duration: 2000,
       triggerElement: hello,
       triggerHook: 0,
     })
       .setTween(helloCardAnim)
+      .setPin(helloCard)
       .addTo(controller);
 
     let scene4 = new ScrollMagic.Scene({
@@ -145,16 +172,6 @@
       .addTo(controller);
 
 
-    let scrollPos = 0;
-    let offsetExperience = $('.experience').offset().top;
-    let item = $('.experience__item');
-
-
-
-
-    setInterval(() => {
-      video.currentTime = scrollPos;
-    }, 33.3);
 
 
     // partner section
