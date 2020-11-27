@@ -9,6 +9,8 @@ function js_variables()
 
     foreach ($images as $img) {
         $index = preg_replace('/[^0-9]/', '', $img);
+        preg_match('/_(\d+)_/', $img, $matches);
+        $index = $matches[1];
         $imagesList[$index] = \App\asset_path('images/experience/animation/') . $img;
     }
 
