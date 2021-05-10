@@ -2,14 +2,7 @@
   <div class="container">
     <div class="experience__inner">
       <div class="experience__card">
-        <video class="experience__animation" autobuffer preload muted>
-          <source type="video/webm"
-                  src="{{ get_theme_file_uri() .  '/resources/assets/videos/experience/card-animation.webm' }}"/>
-          <source type="video/ogg"
-                  src="{{ get_theme_file_uri() .  '/resources/assets/videos/experience/card-animation.ogv' }}"/>
-          <source type="video/mp4"
-                  src="{{ get_theme_file_uri() .  '/resources/assets/videos/experience/card-animation.mp4' }}"/>
-        </video>
+        <canvas class="experience__animation"></canvas>
       </div>
       <img src="@asset('images/experience/card.png')" alt="card" class="experience__card-img">
     </div>

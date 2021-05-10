@@ -22,7 +22,7 @@
     @media screen and (max-width: 767px) {
       margin: 0;
       width: 100%;
-      align-items: center;
+      align-items: flex-start;
     }
   }
 
@@ -60,7 +60,7 @@
 
     @media screen and (max-width: 767px) {
       width: 100%;
-      text-align: center;
+      text-align: left;
       font-size: 26px;
       letter-spacing: -0.47px;
       line-height: 34px;
@@ -127,6 +127,7 @@
     @media screen and (max-width: 767px) {
       flex: 0 0 50%;
       white-space: nowrap;
+      margin-bottom: 32px;
     }
   }
 
@@ -144,7 +145,7 @@
     }
 
     @media screen and (max-width: 767px) {
-      text-align: center;
+      text-align: left;
     }
   }
 
@@ -156,7 +157,7 @@
     text-align: end;
 
     @media screen and (max-width: 767px) {
-      text-align: center;
+      text-align: left;
     }
   }
 

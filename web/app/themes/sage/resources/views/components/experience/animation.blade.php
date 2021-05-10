@@ -45,8 +45,19 @@
 
     const textAnim = TweenMax.fromTo(text, 3, {opacity: 0}, {opacity: 1});
     const cardAnim = TweenMax.fromTo(card, 3, {opacity: 0}, {opacity: 1});
-    const helloCardAnim = TweenMax.fromTo(helloCard, 3, {scaleX: 1, scaleY:1, rotation:7}, {scaleX:0.5, scaleY:0.5, rotation:-160, opacity: cardOpacity});
-    const helloCardScale = TweenMax.to(helloCard, 1, {scaleX:10, scaleY:10, rotation:-90, zIndex:2, display:'none'});
+    const helloCardAnim = TweenMax.fromTo(helloCard, 3, {scaleX: 1, scaleY: 1, rotation: 7}, {
+      scaleX: 0.5,
+      scaleY: 0.5,
+      rotation: -160,
+      opacity: cardOpacity
+    });
+    const helloCardScale = TweenMax.to(helloCard, 1, {
+      scaleX: 10,
+      scaleY: 10,
+      rotation: -90,
+      zIndex: 2,
+      display: 'none'
+    });
 
 
     // Анимация видео
@@ -82,27 +93,56 @@
       });
 
       scene.on('progress', e => {
-        if(e.progress > 0.25) {
+        if (e.progress > 0.25) {
           item.eq(1).addClass('experience__item-active').addClass('experience__item-green');
-        }
-        else {
+        } else {
           item.eq(1).removeClass('experience__item-active').removeClass('experience__item-green');
         }
-        if(e.progress > 0.5) {
+        if (e.progress > 0.5) {
           item.eq(2).addClass('experience__item-active').addClass('experience__item-green');
-        }
-        else {
+        } else {
           item.eq(2).removeClass('experience__item-active').removeClass('experience__item-green');
         }
-        if(e.progress > 0.75) {
+        if (e.progress > 0.75) {
           item.eq(3).addClass('experience__item-active').addClass('experience__item-green');
-        }
-        else {
+        } else {
           item.eq(3).removeClass('experience__item-active').removeClass('experience__item-green');
         }
       });
 
-      scene.on('end', function() {
+      let scrollPos = 0;
+      let offsetExperience = $('.experience').offset().top;
+      let item = $('.experience__item');
+      const context = video.getContext('2d');
+
+      const currentFrame = index => {
+        const indexStr = index.toString().padStart(3, '0');
+        return (
+          window.wp_data.imagesUrls[indexStr]
+        )
+      };
+
+      const frameCount = 72;
+
+      video.height = 595;
+      video.width = 600;
+      const img = new Image();
+      img.src = currentFrame(1);
+      img.onload = function () {
+        context.drawImage(img, 0, 0)
+      }
+
+      const updateImage = index => {
+        img.src = currentFrame(index);
+        context.drawImage(img, 0, 0);
+      }
+
+      scene.on('progress', function (e) {
+        requestAnimationFrame(() => updateImage(Math.round(e.progress * frameCount)))
+      })
+
+
+      scene.on('end', function () {
         $('.experience__card-img').toggleClass('experience__card-active');
       });
 
@@ -125,15 +165,16 @@
       triggerElement: intro,
       triggerHook: 0,
     })
-    .setTween(timeline)
-    .addTo(controller);
+      .setTween(timeline)
+      .addTo(controller);
 
     let scene3 = new ScrollMagic.Scene({
-      duration: 1600,
+      duration: 2000,
       triggerElement: hello,
       triggerHook: 0,
     })
       .setTween(helloCardAnim)
+      .setPin(helloCard)
       .addTo(controller);
 
     let scene4 = new ScrollMagic.Scene({
@@ -143,18 +184,6 @@
     })
       .setTween(helloCardScale)
       .addTo(controller);
-
-
-    let scrollPos = 0;
-    let offsetExperience = $('.experience').offset().top;
-    let item = $('.experience__item');
-
-
-
-
-    setInterval(() => {
-      video.currentTime = scrollPos;
-    }, 33.3);
 
 
     // partner section
